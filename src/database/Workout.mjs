@@ -8,7 +8,7 @@ const getAllWorkouts = () => {
   })
 }
 
-const getOneWorkout = ( workoutId) => {
+const getOneWorkout = (workoutId) => {
   WorkoutModel.findOne({ _id: workoutId }, (err, workout) => {
     if (err) throw err
     if (!workout) throw "nothing found"
@@ -33,4 +33,4 @@ const createNewWorkout = async (data) => {
 }
 
 
-export const workoutUtils = { getAllWorkouts, getOneWorkout, createNewWorkout }
+export { getAllWorkouts, getOneWorkout, createNewWorkout }

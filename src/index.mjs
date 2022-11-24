@@ -1,6 +1,5 @@
 import express, { json } from "express";
 import v1WorkoutRouter from "./v1/routes/workoutRoute.mjs";
-require('dotenv').config()
 import "./config.mjs";
 
 const app = express();

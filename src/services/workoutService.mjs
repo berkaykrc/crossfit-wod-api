@@ -1,4 +1,4 @@
-import {workoutUtils} from "../database/Workout.mjs"
+import * as workoutUtils from "../database/Workout.mjs"
 
 const getAllWorkouts = () => {
     try {
@@ -36,4 +36,4 @@ const deleteOneWorkout = (workoutId) => {
     } catch (error) { console.log(error) }
 };
 
-export const workoutService = {createNewWorkout,updateOneWorkout,deleteOneWorkout,getOneWorkout,getAllWorkouts}
+export { createNewWorkout, updateOneWorkout, deleteOneWorkout, getOneWorkout, getAllWorkouts }

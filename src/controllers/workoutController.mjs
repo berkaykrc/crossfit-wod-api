@@ -1,4 +1,4 @@
-import  {workoutService} from "../services/workoutService.mjs"
+import * as workoutService from "../services/workoutService.mjs"
 import { validationResult } from 'express-validator';
 
 const getAllWorkouts = (_req, res) => {

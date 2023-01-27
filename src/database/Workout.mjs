@@ -1,36 +1,43 @@
-import WorkoutModel from './WorkoutModel.mjs'
+import WorkoutModel from "./WorkoutModel.mjs";
 
 const getAllWorkouts = () => {
-  WorkoutModel.find({}, (err, workouts) => {
-    if (err) throw err
-    if (!workouts) throw "workouts boş"
-    return workouts
-  })
-}
+  const allWorkouts = WorkoutModel.find({}, (err, workouts) => err || workouts);
+  return allWorkouts;
+};
 
 const getOneWorkout = (workoutId) => {
   WorkoutModel.findOne({ _id: workoutId }, (err, workout) => {
-    if (err) throw err
-    if (!workout) throw "nothing found"
-    return workout
-  })
-}
+    if (err) throw err;
+    if (!workout)
+      return {
+        status: 400,
+        message: `Can't find workout with the id '${workoutId}'`,
+      };
+    return workout;
+  });
+};
 
 const createNewWorkout = async (data) => {
-  WorkoutModel.findOne({ name: data.name })
-    .exec((err, found_workout) => {
-      if (err) {
-        return next(err);
-      }
-      if (found_workout) {
-        return next(found_workout)
-      } else {
-        WorkoutModel.create(data, function (err, data) {
-          return err ? next(err) : data
-        })
-      }
-    })
-}
+  // is this callback hell?
+  const isWorkoutAlreadyAdded = WorkoutModel.findOne({ name: data.name }).exec(
+    (err, found) => err || found
+  );
+  if (!isWorkoutAlreadyAdded) {
+    const createdWorkout = await WorkoutModel.create(
+      data,
+      (err, workout) => err || workout
+    );
+    return createdWorkout;
+  }
+};
 
+const updateOneWorkout = async (workoutId, changes) => {
+  await WorkoutModel.findOneAndUpdate(
+    { _id: workoutId },
+    changes,
+    { new: true },
+    (err, docs) => err || docs
+  );
+};
 
-export { getAllWorkouts, getOneWorkout, createNewWorkout }
+export { getAllWorkouts, getOneWorkout, createNewWorkout, updateOneWorkout };

@@ -1,39 +1,35 @@
-import * as workoutUtils from "../database/Workout.mjs"
+/* eslint-disable no-console */
+import * as workoutUtils from "../database/Workout.mjs";
 
 const getAllWorkouts = () => {
-    try {
-        const allWorkouts = workoutUtils.getAllWorkouts()
-        return allWorkouts;
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-const getOneWorkout = (workoutId) => {
-    try {
-        const workout = workoutUtils.getOneWorkout(workoutId)
-        return workout;
-    } catch (error) { console.log(error) }
+  const allWorkouts = workoutUtils.getAllWorkouts();
+  return allWorkouts;
 };
 
-const createNewWorkout = async (data) => {
-    try {
-        const createdWorkout = workoutUtils.createNewWorkout(data)
-        return createdWorkout
-    } catch (error) { console.log(error) }
+const getOneWorkout = (workoutId) => {
+  const workout = workoutUtils.getOneWorkout(workoutId);
+  return workout;
+};
+
+const createNewWorkout = (data) => {
+  const createdWorkout =  workoutUtils.createNewWorkout(data);
+  return createdWorkout;
 };
 
 const updateOneWorkout = (workoutId, changes) => {
-    try {
-        const updatedWorkout = workoutUtils.updateOneWorkout(workoutId, changes);
-        return updatedWorkout;
-    } catch (error) { console.log(error) }
+  const updatedWorkout = workoutUtils.updateOneWorkout(workoutId, changes);
+  return updatedWorkout;
+
 };
 
 const deleteOneWorkout = (workoutId) => {
-    try {
-        workoutUtils.deleteOneWorkout(workoutId);
-    } catch (error) { console.log(error) }
-};
+  workoutUtils.deleteOneWorkout(workoutId);
+}
 
-export { createNewWorkout, updateOneWorkout, deleteOneWorkout, getOneWorkout, getAllWorkouts }
+export {
+  createNewWorkout,
+  updateOneWorkout,
+  deleteOneWorkout,
+  getOneWorkout,
+  getAllWorkouts,
+};

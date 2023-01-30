@@ -15,9 +15,7 @@ route.get("/", getAllWorkouts);
 route.get(
   "/:workoutId",
   param("workoutId")
-    .isInt()
-    .withMessage("workoutId should be number value")
-    .isEmpty()
+    .notEmpty()
     .withMessage("parameter ':workoutId' can not be empty"),
   getOneWorkout
 );

@@ -2,33 +2,28 @@ import { validationResult } from "express-validator";
 import * as workoutService from "../services/workoutService.mjs";
 
 const getAllWorkouts = (_req, res) => {
-  try {
-    const allWorkouts = workoutService.getAllWorkouts();
-    res.status(201).send({ status: "OK", data: allWorkouts.name })
-    
-  } catch (error) {
-    res
-      .status(error?.status || 500)
-      .send({ status: "FAILED", data: { error: error?.message || error } });
-  }
+  const allWorkouts = workoutService.getAllWorkouts();
+  allWorkouts
+    .then((value) => res.status(201).json({ status: "OK", data: value }))
+    .catch((error) => {
+      res
+        .status(error?.status || 500)
+        .send({ status: "FAILED", data: { error: error?.message || error } });
+    });
 };
 
 const getOneWorkout = (req, res) => {
   const {
     params: { workoutId },
   } = req;
-  if (!workoutId) {
-    res.status(400).send({
-      status: "FAILED",
-      data: { error: "Parameter ':workoutId' can not be empty" },
-    });
-  }
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).send({ status: "FAILED", errors: errors.array() });
   }
   const workout = workoutService.getOneWorkout(workoutId);
-  return res.status(201).send({ status: "OK", data: workout });
+  workout.then((value) => {
+    res.status(201).send({ status: "OK", data: value });
+  });
 };
 
 const createNewWorkout = async (req, res) => {

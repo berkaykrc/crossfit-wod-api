@@ -1,20 +1,14 @@
 import WorkoutModel from "./WorkoutModel.mjs";
 
 const getAllWorkouts = () => {
-  const allWorkouts = WorkoutModel.find({}, (err, workouts) => err || workouts);
+  const allWorkouts = WorkoutModel.find();
   return allWorkouts;
 };
 
-const getOneWorkout = (workoutId) => {
-  WorkoutModel.findOne({ _id: workoutId }, (err, workout) => {
-    if (err) throw err;
-    if (!workout)
-      return {
-        status: 400,
-        message: `Can't find workout with the id '${workoutId}'`,
-      };
-    return workout;
-  });
+const getOneWorkout = async (workoutId) => {
+  const foundWorkout = await WorkoutModel.findById(
+    workoutId)
+  return foundWorkout;
 };
 
 const createNewWorkout = async (data) => {
@@ -31,8 +25,8 @@ const createNewWorkout = async (data) => {
   }
 };
 
-const updateOneWorkout = async (workoutId, changes) => {
-  await WorkoutModel.findOneAndUpdate(
+const updateOneWorkout = (workoutId, changes) => {
+  WorkoutModel.findOneAndUpdate(
     { _id: workoutId },
     changes,
     { new: true },

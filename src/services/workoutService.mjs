@@ -12,19 +12,18 @@ const getOneWorkout = (workoutId) => {
 };
 
 const createNewWorkout = (data) => {
-  const createdWorkout =  workoutUtils.createNewWorkout(data);
+  const createdWorkout = workoutUtils.createNewWorkout(data);
   return createdWorkout;
 };
 
 const updateOneWorkout = (workoutId, changes) => {
   const updatedWorkout = workoutUtils.updateOneWorkout(workoutId, changes);
   return updatedWorkout;
-
 };
 
 const deleteOneWorkout = (workoutId) => {
   workoutUtils.deleteOneWorkout(workoutId);
-}
+};
 
 export {
   createNewWorkout,

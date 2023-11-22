@@ -35,20 +35,3 @@ The CrossFit WOD API is open source and available under the MIT License.
 ## Acknowledgements
 
 This project was developed following the tutorial on REST API design best practices from [freeCodeCamp](^7^).
-
-Please note that this README is a preliminary version and the project structure, language used, routes, etc., are subject to change as the project evolves. For the most up-to-date information, please refer to the project repository⁴.
-
-Source: Conversation with Bing, 11/22/2023
-(1) berkaykrc/crossfit-wod-api - GitHub. https://github.com/berkaykrc/crossfit-wod-api.
-(2) REST API Design Best Practices Handbook – How to Build a REST API with .... https://www.freecodecamp.org/news/rest-api-design-best-practices-build-a-rest-api/.
-(3) REST API Design Best Practices Handbook – How to Build a REST API with .... https://www.freecodecamp.org/news/rest-api-design-best-practices-build-a-rest-api/.
-(4) berkaykrc/crossfit-wod-api - GitHub. https://github.com/berkaykrc/crossfit-wod-api.
-(5) crossfit-wod · GitHub Topics · GitHub. https://github.com/topics/crossfit-wod.
-(6) crossfit · GitHub Topics · GitHub. https://github.com/topics/crossfit.
-(7) SugarWOD: Open API. https://www.sugarwod.com/fitness-software-developers/.
-(8) Releases · berkaykrc/crossfit-wod-api · GitHub. https://github.com/berkaykrc/crossfit-wod-api/releases.
-(9) GitHub - neekhara22/Crossfit-WOTD-API: Build a REST API for a CrossFit .... https://github.com/neekhara22/Crossfit-WOTD-API.
-(10) REST API Best Practices – REST Endpoint Design Examples. https://www.freecodecamp.org/news/rest-api-best-practices-rest-endpoint-design-examples/.
-(11) Best Practices for Scaling Your Node.js REST APIs - freeCodeCamp.org. https://www.freecodecamp.org/news/nodejs-api-best-practices-for-scaling/.
-(12) The REST API Handbook – How to Build, Test, Consume, and Document REST APIs. https://www.freecodecamp.org/news/build-consume-and-document-a-rest-api/.
-(13) API Architecture: 11 Design Best Practices for REST APIs. https://medium.com/paperplanetechworks/api-architecture-11-design-best-practices-for-rest-apis-d26a35be603c.

@@ -6,8 +6,7 @@ const getAllWorkouts = () => {
 };
 
 const getOneWorkout = async (workoutId) => {
-  const foundWorkout = await WorkoutModel.findById(
-    workoutId)
+  const foundWorkout = await WorkoutModel.findById(workoutId);
   return foundWorkout;
 };
 
@@ -25,13 +24,27 @@ const createNewWorkout = async (data) => {
   }
 };
 
-const updateOneWorkout = (workoutId, changes) => {
-  WorkoutModel.findOneAndUpdate(
-    { _id: workoutId },
-    changes,
-    { new: true },
-    (err, docs) => err || docs
-  );
+const updateOneWorkout = async (workoutId, changes) => {
+  try {
+    const updatedWorkout = await WorkoutModel.findOneAndUpdate(
+      { _id: workoutId },
+      changes,
+      { new: true }
+    );
+    if (updatedWorkout) {
+      return updatedWorkout;
+    }
+    throw Error({
+      status: 500,
+      message: `Cannot find workout with ${workoutId}`,
+    });
+  } catch (error) {
+    // eslint-disable-next-line no-throw-literal
+    throw {
+      status: error?.status || 500,
+      message: error?.message || `Cannot find workout with ${workoutId}`,
+    };
+  }
 };
 
 export { getAllWorkouts, getOneWorkout, createNewWorkout, updateOneWorkout };

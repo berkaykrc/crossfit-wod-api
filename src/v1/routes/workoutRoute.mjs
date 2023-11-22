@@ -24,7 +24,7 @@ route.post(
   "/",
   body("name")
     .isString()
-    .isLength({ min: 1 })
+    .notEmpty()
     .withMessage("name can't be empty or consist of numbers."),
   body("equipment").isArray({ min: 1 }).withMessage("equipment can't be empty"),
   body("exercises").isArray({ min: 1 }).withMessage("exercises can't be empty"),
@@ -38,16 +38,16 @@ route.patch(
   "/:workoutId",
   body("name")
     .isString()
-    .isLength({ min: 1 })
+    .notEmpty()
     .withMessage("name can't be empty for update"),
   body("equipment")
     .isArray({ min: 1 })
     .withMessage("equipment can't be empty for update"),
   body("exercises")
-    .isEmpty({})
+    .notEmpty()
     .withMessage("exercises can't be empty for update"),
   body("trainerTips")
-    .isEmpty()
+    .notEmpty()
     .withMessage("trainer tips can't be empty for update"),
   updateOneWorkout
 );

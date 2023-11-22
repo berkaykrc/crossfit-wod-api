@@ -12,6 +12,7 @@ const getAllWorkouts = (_req, res) => {
     });
 };
 
+// eslint-disable-next-line consistent-return
 const getOneWorkout = (req, res) => {
   const {
     params: { workoutId },
@@ -21,9 +22,13 @@ const getOneWorkout = (req, res) => {
     return res.status(400).send({ status: "FAILED", errors: errors.array() });
   }
   const workout = workoutService.getOneWorkout(workoutId);
-  workout.then((value) => {
-    res.status(201).send({ status: "OK", data: value });
-  });
+  workout
+    .then((value) => res.status(201).send({ status: "OK", data: value }))
+    .catch((err) =>
+      res
+        .status(err?.status || 500)
+        .send({ status: "FAILED,", data: { error: err?.message || err } })
+    );
 };
 
 const createNewWorkout = async (req, res) => {
@@ -47,7 +52,7 @@ const createNewWorkout = async (req, res) => {
   return res.status(201).send({ status: "OK", workout });
 };
 
-const updateOneWorkout = (req, res) => {
+const updateOneWorkout = async (req, res) => {
   const {
     body,
     params: { workoutId },
@@ -62,11 +67,14 @@ const updateOneWorkout = (req, res) => {
     });
   }
   try {
-    const updatedWorkout = workoutService.updateOneWorkout(workoutId, body);
-    res.send({ status: "OK", data: updatedWorkout });
+    const updatedWorkout = await workoutService.updateOneWorkout(
+      workoutId,
+      body
+    );
+    return res.send({ status: "OK", data: updatedWorkout });
   } catch (error) {
-    res
-      .status(error)
+    return res
+      .status(error.status)
       .send({ status: "FAILED", data: { error: error?.message || error } });
   }
 };
